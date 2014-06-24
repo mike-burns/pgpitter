@@ -3,18 +3,28 @@ body {
   font-family: "helvetica neue";
 }
 
+p {
+  margin: 0;
+}
+
 .status {
-  margin: 6em auto;
+  margin: 6em auto 2em;
   max-width: 600px;
 }
 
 .status-author {
+  color: #999;
   font-size: 1em;
+  margin-bottom: 1em;
 }
 
 .status-body {
   font-size: 2em;
   margin-bottom: 2em;
+}
+
+.author-validation {
+  color: #999;
 }
 
 .status-original {

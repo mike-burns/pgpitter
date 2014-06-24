@@ -1,10 +1,14 @@
 <section class="status">
   <section class="status-author">
-    <p>By <%= @status.key.keyid %></p>
+    <p><%= @status.key.keyid %> wrote...</p>
   </section>
 
   <section class="status-body">
     <p><%= @status.body %></p>
+  </section>
+
+  <section class="author-validation">
+    <p><%= @status.key.keyid %>'s key has been signed by [x] people.</p>
   </section>
 </section>
 
