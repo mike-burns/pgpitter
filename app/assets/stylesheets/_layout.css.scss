@@ -1,0 +1,29 @@
+body {
+  color: #333;
+  font-family: "helvetica neue";
+}
+
+.status {
+  margin: 6em auto;
+  max-width: 600px;
+}
+
+.status-author {
+  font-size: 1em;
+}
+
+.status-body {
+  font-size: 2em;
+  margin-bottom: 2em;
+}
+
+.status-original {
+  background: #f3f3f3;
+  color: #777;
+  padding: 2em;
+
+  .status-original-body {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+}

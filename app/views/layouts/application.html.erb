@@ -7,9 +7,13 @@
   <%= stylesheet_link_tag :application, :media => 'all' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="<%= body_class %>">
-  <%= render 'flashes' -%>
-  <%= yield %>
-  <%= render 'javascript' %>
+  <section class="container">
+    <%= render 'flashes' -%>
+    <%= yield %>
+    <%= render 'javascript' %>
+  </section>
 </body>
+
 </html>
