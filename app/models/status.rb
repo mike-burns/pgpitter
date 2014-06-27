@@ -22,7 +22,7 @@ class Status < ActiveRecord::Base
   end
 
   def verified_data(data, sig, tries)
-    case GPGME.gpg_err_code(sig.status)
+    case GPGME.gpgme_err_code(sig.status)
     when GPGME::GPG_ERR_NO_ERROR
       [data.read, sig.key]
     when GPGME::GPG_ERR_NO_PUBKEY
