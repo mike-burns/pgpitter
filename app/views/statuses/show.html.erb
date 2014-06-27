@@ -1,6 +1,6 @@
 <section class="status">
   <section class="status-author">
-    <p><%= @status.key.keyid %> wrote...</p>
+    <p><%= @status.formatted_keyid %> wrote...</p>
   </section>
 
   <section class="status-body">
@@ -8,7 +8,7 @@
   </section>
 
   <section class="author-validation">
-    <p><%= @status.key.keyid %>'s key has been signed by [x] people.</p>
+    <p><%= @status.formatted_keyid %>'s key has been signed by [x] people.</p>
   </section>
 </section>
 

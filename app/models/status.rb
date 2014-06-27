@@ -5,6 +5,12 @@ class Status < ActiveRecord::Base
 
   before_create :set_keyid
 
+  delegate :keyid, to: :key
+
+  def formatted_keyid
+    "0x#{keyid}"
+  end
+
   private
 
   def set_keyid

@@ -20,7 +20,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 gem 'gpgme'
-gem 'mail-gpg' 
+gem 'mail-gpg'
 
 group :development do
   gem 'better_errors'
