@@ -11,6 +11,10 @@ class Status < ActiveRecord::Base
     "0x#{keyid}"
   end
 
+  def key_signer_count
+    key.signers.count
+  end
+
   private
 
   def set_keyid

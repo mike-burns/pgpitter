@@ -8,7 +8,7 @@
   </section>
 
   <section class="author-validation">
-    <p><%= @status.formatted_keyid %>'s key has been signed by [x] people.</p>
+    <p><%= @status.formatted_keyid %>'s key has been signed by <%= pluralize @status.key_signer_count, "people" %>.</p>
   </section>
 </section>
 
