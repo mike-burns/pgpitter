@@ -42,7 +42,7 @@ class Status < ActiveRecord::Base
   end
 
   def import_into_keyring(fingerprint)
-    raw_pub_key = hkp.fetch(keyid)
+    raw_pub_key = hkp.fetch(fingerprint)
     GPGME::Key.import(raw_pub_key)
   end
 
