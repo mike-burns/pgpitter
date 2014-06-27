@@ -15,7 +15,7 @@ class Status < ActiveRecord::Base
     false
   end
 
-  def verify(tries = 5)
+  def verify(tries = 2)
     sig = nil
     data = crypto.verify(signed_body){ | sig_ | sig = sig_ }
     verified_data(data, sig, tries)
@@ -50,6 +50,6 @@ class Status < ActiveRecord::Base
     Hkp.new
   end
 
-  class SigException < StandardException
+  class SigException < StandardError
   end
 end
