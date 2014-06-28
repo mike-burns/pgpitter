@@ -1,0 +1,56 @@
+#!/bin/sh
+
+HOST_AND_PORT=protected-ridge-2485.herokuapp.com
+
+delete_after=0
+
+if [ "$#" = 1 ]; then
+  file="$1"
+else
+  file=`mktemp`
+  trap "rm $file" INT QUIT
+  delete_after=1
+
+  editor=/bin/ed
+  if [ ! -z "$VISUAL" ]; then
+    editor="$VISUAL"
+  elif [ ! -z "$EDITOR" ]; then
+    editor="$EDITOR"
+  elif command -v vi > /dev/null; then
+    editor=`command -v vi`
+  fi
+
+  "$editor" "$file"
+  result=$?
+  if [ "x$result" != "x0" ]; then
+    rm -f "$file"
+    exit $result
+  fi
+fi
+
+signed_body_file=`mktemp`
+trap "rm $signed_body_file" INT QUIT
+rm -f "$signed_body_file"
+gpg -a --output "$signed_body_file" --sign "$file"
+signed_body=`sed -e 's/$/\\\\\\\\n/' "$signed_body_file"`
+rm -f "$signed_body_file"
+
+data=`mktemp`
+trap "rm $data" INT QUIT
+
+params=`cat` << P
+{"status":{"signed_body":"$signed_body"}}
+P
+echo "$params" > "$data"
+
+cat "$data"
+
+curl -s -i -d@"$data" http://$HOST_AND_PORT/statuses -H "Content-Type: application/json"
+result=$?
+
+if [ "x$delete_after" = "x1" ]; then
+  rm -f "$file"
+fi
+
+rm -f "$data"
+exit $result
