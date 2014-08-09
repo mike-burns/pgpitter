@@ -20,6 +20,10 @@ class Status < ActiveRecord::Base
   def set_keyid
     self.body, raw_key = verify
     self.key = Key.find_or_create_by(keyid: raw_key.primary_subkey.keyid)
+    self.key.update(primary_name: raw_key.primary_uid.name, primary_email: raw_key.primary_uid.email)
+  rescue ActiveRecord::ActiveRecordError => e
+    self.error.add(e.message)
+    false
   rescue GPGME::Error::NoData
     self.errors.add(:signed_body, "Invalid signature")
     false

@@ -2,8 +2,11 @@
   <section class="status-author">
     <p>
       <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>">
-        <%= @status.formatted_keyid %> wrote...
+        <%= @status.key.primary_name %> wrote...
       </a>
+    </p>
+    <p>
+        <%= @status.key.primary_email %>
     </p>
   </section>
 
