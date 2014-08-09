@@ -180,6 +180,9 @@ GEM
       atomic
     tilt (1.4.1)
     timecop (0.7.1)
+    title (0.0.4)
+      i18n
+      rails (>= 3.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -231,6 +234,7 @@ DEPENDENCIES
   simple_form
   simplecov
   timecop
+  title
   uglifier
   unicorn
   webmock

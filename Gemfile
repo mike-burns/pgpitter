@@ -21,6 +21,7 @@ gem 'uglifier'
 gem 'unicorn'
 gem 'gpgme'
 gem 'mail-gpg'
+gem 'title'
 
 group :development do
   gem 'better_errors'
