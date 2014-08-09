@@ -11,8 +11,11 @@ class Key < ActiveRecord::Base
 
   def populate_signers!
     signer_keyids.each do |signer_keyid|
-      signer = Key.find_or_create_by!(keyid: signer_keyid)
-      signatures.create!(signing_key: signer)
+      begin
+        signer = Key.find_or_create_by!(keyid: signer_keyid)
+        signatures.create!(signing_key: signer)
+      rescue ActiveRecord::RecordNotUnique
+      end
     end
   end
 
@@ -28,7 +31,7 @@ class Key < ActiveRecord::Base
   end
 
   def hkp
-    Hkp.new
+    Hkp.new(KEYSERVER_URL)
   end
 
   def subkeyids_from_gnupg

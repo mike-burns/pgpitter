@@ -1,0 +1,1 @@
+KEYSERVER_URL = "http://pool.sks-keyservers.net:11371"

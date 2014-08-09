@@ -57,7 +57,7 @@ class Status < ActiveRecord::Base
   end
 
   def hkp
-    Hkp.new("http://pool.sks-keyservers.net:11371")
+    Hkp.new(KEYSERVER_URL)
   end
 
   class SigException < StandardError
