@@ -64,6 +64,10 @@ p {
   font-family: $serif;
   font-size: 1em;
   margin-bottom: 1em;
+
+  a {
+    color: #000;
+  }
 }
 
 .status-body {
