@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219194046) do
+ActiveRecord::Schema.define(version: 20140809202137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140219194046) do
     t.datetime "updated_at"
   end
 
+  add_index "keys", ["keyid"], name: "index_keys_on_keyid", unique: true, using: :btree
+
   create_table "signatures", force: true do |t|
     t.integer  "signed_key_id"
     t.integer  "signing_key_id"
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140219194046) do
   end
 
   add_index "signatures", ["signed_key_id"], name: "index_signatures_on_signed_key_id", using: :btree
+  add_index "signatures", ["signing_key_id", "signed_key_id"], name: "index_signatures_on_signing_key_id_and_signed_key_id", unique: true, using: :btree
   add_index "signatures", ["signing_key_id"], name: "index_signatures_on_signing_key_id", using: :btree
 
   create_table "statuses", force: true do |t|

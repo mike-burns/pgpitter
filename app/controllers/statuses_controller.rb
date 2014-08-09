@@ -10,6 +10,7 @@ class StatusesController < ApplicationController
 
   def show
     status = Status.find(params[:id])
+    status.key.populate_signers!
 
     respond_to do |format|
       format.html { @status = status }
