@@ -1,6 +1,10 @@
 <section class="status">
   <section class="status-author">
-    <p><%= @status.formatted_keyid %> wrote...</p>
+    <p>
+      <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>">
+        <%= @status.formatted_keyid %> wrote...
+      </a>
+    </p>
   </section>
 
   <section class="status-body">

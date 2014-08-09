@@ -42,7 +42,6 @@ The `signed_body` was generated from an input file named `tweet` using:
 These commands can be used to interact with the system:
 
     curl -i -d@data localhost:7000/statuses -H "Content-Type: application/json"
-    curl -i localhost:7000/followers/DC97B779C6472D97/statuses -H "Content-Type: application/json"
     curl -i localhost:7000/statuses/17 -H "Content-Type: application/json" -H "Accept: application/json"
 
 Getting Started
