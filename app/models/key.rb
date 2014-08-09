@@ -16,10 +16,6 @@ class Key < ActiveRecord::Base
     end
   end
 
-  def self.find_or_import(keyid)
-    find_or_create_by(keyid: keyid).tap { |key| key.populate_signers! }
-  end
-
   private
 
   def signer_keyids

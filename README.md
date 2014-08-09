@@ -17,26 +17,6 @@ text that is signed using a PGP key.
 
     201
 
-_View updates_. This shows all statuses for the people who have signed
-your PGP key. Produces a JSON result.
-
-    GET /followers/:keyid/statuses
-    Content-Type: application/json
-
-
-    =>
-
-    200
-    { keyid: KEYID,
-      page: 1,
-      per_page: 50,
-      signers_statuses: [
-        { keyid: KEYID1, signed_body: PGP-signed-ASCII1, created_at: DATE },
-        { keyid: KEYID2, signed_body: PGP-signed-ASCII2, created_at: DATE },
-        { keyid: KEYID1, signed_body: PGP-signed-ASCII3, created_at: DATE },
-        { keyid: KEYID3, signed_body: PGP-signed-ASCII4, created_at: DATE }
-    ] }
-
 _View a status_. Takes a status ID. This is mostly here just for sharing
 URLs with others.
 
