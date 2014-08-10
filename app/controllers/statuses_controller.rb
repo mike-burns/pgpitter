@@ -2,6 +2,7 @@ class StatusesController < ApplicationController
   def create
     status = Status.new(status_params)
     if status.save
+      status.key.populate_signers!
       render text: '', status: 201
     else
       render text: status.errors.full_messages.join(', '), status: 400
@@ -10,8 +11,6 @@ class StatusesController < ApplicationController
 
   def show
     status = Status.find(params[:id])
-    status.key.populate_signers!
-
     respond_to do |format|
       format.html { @status = status }
       format.json { render json: status }

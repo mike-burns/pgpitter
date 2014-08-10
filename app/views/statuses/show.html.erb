@@ -1,10 +1,7 @@
 <section class="status">
   <section class="status-author">
     <p>
-      <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>">
-        <%= @status.key.primary_name %> &lt;<%= @status.key.primary_email %>&gt; 
-      </a>
-      wrote...
+      <%= @status.key.primary_name %> &lt;<%= @status.key.primary_email %>&gt; wrote...
     </p>
   </section>
 
@@ -13,7 +10,22 @@
   </section>
 
   <section class="author-validation">
-    <p><%= @status.formatted_keyid %>'s key has been signed by <%= pluralize @status.key.signers.count, "people" %>.</p>
+    <p>
+      <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>">
+        <%= @status.formatted_keyid %>
+      </a>
+      has been signed by <%= pluralize @status.key.signers.count, "keys" %> including:</p>
+      <ul>
+        <% @status.some_key_signers.each do |signer| %>
+          <li>
+             <%= signer.primary_name %>
+             &lt;<%= signer.primary_email %>&gt;
+             <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= signer.formatted_keyid %>">
+               <%= signer.formatted_keyid %>
+             </a>
+          </li>
+        <% end%>
+      </ul>
   </section>
 </section>
 

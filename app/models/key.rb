@@ -5,15 +5,18 @@ class Key < ActiveRecord::Base
   has_many :signers, through: :signatures, source: :signing_key, class_name: 'Key'
   has_many :statuses
 
+  def formatted_keyid
+    "0x#{keyid}"
+  end
+
   def signers_statuses
     signers.map(&:statuses).flatten
   end
 
   def populate_signers!
-    signer_keyids.each do |signer_keyid|
+    raw_signers_from_gnupg.each do |raw_signer|
       begin
-        signer = Key.find_or_create_by!(keyid: signer_keyid)
-        signatures.create!(signing_key: signer)
+        populate_signer(raw_signer)
       rescue ActiveRecord::RecordNotUnique
       end
     end
@@ -21,20 +24,24 @@ class Key < ActiveRecord::Base
 
   private
 
-  def signer_keyids
-    all_signer_keyids.uniq.reject { |k_id| k_id == keyid }
+  def populate_signer(raw_signer)
+    type, _, _, _, signer_keyid, _, _, _, _, name_and_email, _ = raw_signer.split(":")
+    if ["sig", "rev"].include?(type)
+      signer_key = Key.find_or_create_by!(keyid: signer_keyid)
+      update_signer_key_with_uid_info(name_and_email, signer_key)
+      signatures.create!(signing_key: signer_key)
+    end
   end
 
-  def all_signer_keyids
-    hkp.fetch_and_import(keyid)
-    subkeyids_from_gnupg.split("\n")
+  def update_signer_key_with_uid_info(name_and_email, signer_key)
+    if name_and_email != "[User ID not found]"
+      name, _email = name_and_email.split(" <")
+      email = _email.chomp(">")
+      signer_key.update(primary_name: name, primary_email: email)
+    end
   end
 
-  def hkp
-    Hkp.new(KEYSERVER_URL)
-  end
-
-  def subkeyids_from_gnupg
-    `gpg --with-colons --fast-list-mode --list-sigs #{keyid} | awk -F ':' '$1 ~ /sig|rev/ {print $5}'`
+  def raw_signers_from_gnupg
+    `gpg --with-colons --list-sigs #{keyid}`.split("\n")
   end
 end

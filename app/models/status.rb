@@ -5,15 +5,16 @@ class Status < ActiveRecord::Base
 
   before_create :set_keyid
 
-  delegate :keyid, to: :key
-
-  def formatted_keyid
-    "0x#{keyid}"
-  end
+  delegate :keyid, :formatted_keyid, to: :key
 
   def key_signer_count
     key.signers.count
   end
+
+  def some_key_signers
+    key.signers.limit(3)
+  end
+
 
   private
 
