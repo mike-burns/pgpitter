@@ -3,13 +3,12 @@ $serif: georgia, serif;
 body {
   color: #333;
   font-family: "helvetica neue";
-  margin: 0;
+  margin: 1.5em 1.25em 0;
   padding: 0;
 }
 
 .top-level-header {
   @include outer-container;
-  margin: 1.5em 1.25em;
   max-width: 100%;
 
   h1 {
@@ -54,9 +53,9 @@ p {
 }
 
 .status {
-  margin: 6em auto 10em;
+  margin: 4em auto 10em;
   max-width: 600px;
-  padding: 0 1em;
+  padding: 0;
 }
 
 .status-author {
@@ -92,12 +91,13 @@ p {
 .status-original {
   background: #f3f3f3;
   color: #777;
+  margin: 0 -1.25em;
   padding: 2em;
 
   .status-original-body {
     font-size: 0.9em;
     margin: 0 auto;
     max-width: 600px;
-    padding: 0 1em;
+    padding: 0;
   }
 }
