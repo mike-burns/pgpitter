@@ -79,6 +79,14 @@ p {
 .author-validation {
   color: #999;
   font-family: $serif;
+
+  p {
+    line-height: 1.2;
+  }
+
+  a {
+    color: #000;
+  }
 }
 
 .status-original {
@@ -87,7 +95,9 @@ p {
   padding: 2em;
 
   .status-original-body {
+    font-size: 0.9em;
     margin: 0 auto;
     max-width: 600px;
+    padding: 0 1em;
   }
 }
