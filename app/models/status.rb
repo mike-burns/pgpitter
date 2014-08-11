@@ -12,7 +12,7 @@ class Status < ActiveRecord::Base
   end
 
   def some_key_signers
-    key.signers.limit(3)
+    key.signers.limit(1)
   end
 
 
