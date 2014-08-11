@@ -1,11 +1,10 @@
 <section class="status">
   <section class="status-author">
-    <p>
-      <%= @status.key.primary_name %> wrote&hellip;
-    </p>
+    <p>On <%= @status.created_at.to_formatted_s(:month_and_year) %> <%= @status.key.primary_name %> wrote&hellip;</p>
   </section>
 
   <section class="status-body">
+    <p></p>
     <p><%= @status.body %></p>
   </section>
 
