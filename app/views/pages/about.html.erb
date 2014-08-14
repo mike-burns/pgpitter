@@ -30,17 +30,26 @@
 $ gpg --send-key</pre>
      </li>
      <li>
+       <em>Add our PGP public key to your keyring</em>.
+       Our software is signed with our PGP key, so add it to your keyring.
+       The master keyid is <code>0xFBAE90619F653118</code>.
+       The fingerprint is <code>CFAF 2EA3 467D 54D6 A571  D3F0 FBAE 9061 9F65 3118</code>.
+<pre>$ gpg --recv-key 0xFBAE90619F653118
+$ gpg --fingerprint 0xFBAE90619F653118</pre>
+     </li>
+     <li>
        <em>Download and install mkmnfst</em>.
        The mkmnfst program depends on the libcurl and GPGME libraries and a C
        compiler.
        It is known to work on OpenBSD, Debian, and OS X.
-       Currently there is no official release, so grab the code from the public
-       repository.
-       Since there is no public release, we currently have a dependency on
-       autoconf and automake.
-<pre>$ git clone https://github.com/mnfst/mkmnfst.git
+       The release is signed with our PGP key.
+       Our signing subkeys are <code>0xAFBF615D7661F82A</code> and
+       <code>0x029477225FB26D83</code>.
+<pre>$ curl -LO https://github.com/mnfst/mkmnfst/releases/download/v0.1/mkmnfst-0.1.tar.gz
+$ curl -LO https://github.com/mnfst/mkmnfst/releases/download/v0.1/mkmnfst-0.1.tar.gz.asc
+$ gpg --verify mkmnfst-0.1.tar.gz.asc mkmnfst-0.1.tar.gz
+$ tar -zxf mkmnfst-0.1.tar.gz
 $ cd mkmnfst
-$ ./autogen.sh
 $ ./configure
 $ make
 $ sudo make install</pre>
