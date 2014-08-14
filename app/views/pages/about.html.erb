@@ -2,5 +2,69 @@
  <h2>Trust No One</h2>
  <h3>Post PGP-signed content without creating a username or password.</h3>
 
- <p>At this point I can no longer avoid giving a first, provisional statement of my own hypothesis concerning the origin of the “bad conscience”: it may sound rather strange and needs to be pondered, lived with, and slept on for a long time. I regard the bad conscience as the serious illness that man was bound to contract under the stress of the most fundamental change he ever experienced—that change which occurred when he found himself finally enclosed within the walls of society and of peace. The situation that faced sea animals when they were compelled to become land animals or perish was the same as that which faced these semi-animals, well adapted to the wilderness, to war, to prowling, to adventure: suddenly all their instincts were disvalued and “suspended.” From now on they had to walk on their feet and “bear themselves” whereas hitherto they had been borne by the water: a dreadful heaviness lay upon them. They felt unable to cope with the simplest undertakings; in this new world they no longer possessed their former guides, their regulating, unconscious and infallible drives: they were reduced to thinking, inferring, reckoning, coordinating cause and effect, these unfortunate creatures; they were reduced to their “consciousness,” their weakest and most fallible organ! I believe there has never been such a feeling of misery on earth, such a leaden discomfort and at the same time the old instincts had not suddenly ceased to make their usual demands. Only it was hardly or rarely possible to humor them: as a rule they had to seek new and, as it were, subterranean gratifications.</p>
+ <p>
+ We want to share your content, and we want to <strong>confirm</strong> you
+ support it.
+ You want to post content, but you want to <strong>never send your password
+   over the Internet</strong>.
+ Together, let's use OpenPGP to digitally sign and post your document <strong>without
+   ever making a new account</strong>.
+ </p>
+
+ <p>
+ This Web site cannot be &ldquo;signed in to&rdquo;.
+ Signing into a Web site is an old, antiquated idea.
+ The future will be one where you sign data locally then host it remotely.
+ Only a fool would type their password into a Web page.
+ </p>
+
+ <section>
+   <h4>How it works, intermediate difficulty</h4>
+   <ol>
+     <li>
+       <em>Make an OpenPGP key using GnuPG</em>.
+       The software we provide depends on GnuPG (<code>gpg</code>) &mdash;
+       specifically GPGME &mdash; so you must set up your private key using
+       that. If you already have a private key then you should skip this step.
+<pre>$ gpg --gen-key
+$ gpg --send-key</pre>
+     </li>
+     <li>
+       <em>Download and install mkmnfst</em>.
+       The mkmnfst program depends on the libcurl and GPGME libraries and a C
+       compiler.
+       It is known to work on OpenBSD, Debian, and OS X.
+       Currently there is no official release, so grab the code from the public
+       repository.
+       Since there is no public release, we currently have a dependency on
+       autoconf and automake.
+<pre>$ git clone https://github.com/mnfst/mkmnfst.git
+$ cd mkmnfst
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install</pre>
+     </li>
+     <li>
+       <em>Run mkmnfst on a file</em>.
+       The hard part is done.
+       <pre>$ mkmnfst proclaimation-to-the-world.txt</pre>
+     </li>
+   </ol>
+
+   <h4>How it works, advanced difficulty</h4>
+   <h5>JSON</h5>
+   <p>
+   Let <var>$SIGNED_BODY</var> be a PGP-signed message in ASCII-armored
+   format.
+   You <em>must</em> make sure to preserve newlines in <var>$SIGNED_BODY</var>.
+   If you encounter errors, first ensure that newlines are preserved.
+   </p>
+   <p>
+   The JSON looks like this:
+   </p>
+   <pre>{"status":{"signed_body":<var>$SIGNED_BODY</var>}}</pre>
+   <h5>POST</h5>
+   <p>POST the JSON to <code><%= statuses_url %></code></p>
+  </section>
 </section>
