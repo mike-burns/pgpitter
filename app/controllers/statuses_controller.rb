@@ -3,6 +3,7 @@ class StatusesController < ApplicationController
     status = Status.new(status_params)
     if status.save
       status.key.populate_signers!
+      response.headers['Location'] = status_url(status)
       render text: '', status: 201
     else
       render text: status.errors.full_messages.join(', '), status: 400
