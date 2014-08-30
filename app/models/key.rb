@@ -26,6 +26,7 @@ class Key < ActiveRecord::Base
 
   def populate_signer(raw_signer)
     type, _, _, _, signer_keyid, _, _, _, _, name_and_email, _ = raw_signer.split(":")
+
     if ["sig", "rev"].include?(type)
       signer_key = Key.find_or_create_by!(keyid: signer_keyid)
       update_signer_key_with_uid_info(name_and_email, signer_key)

@@ -3,7 +3,7 @@ require 'hkp'
 class Status < ActiveRecord::Base
   belongs_to :key
 
-  before_create :set_keyid
+  before_create :set_keyid, :set_hexid
 
   delegate :keyid, :formatted_keyid, to: :key
 
@@ -17,6 +17,10 @@ class Status < ActiveRecord::Base
 
 
   private
+
+  def set_hexid
+    self.hexid = SecureRandom.hex(4)
+  end
 
   def set_keyid
     self.body, raw_key = verify
