@@ -1,6 +1,7 @@
 <section class="status">
-  <section class="status-author">
-    <p>On <%= @status.created_at.to_formatted_s(:month_and_year) %> <%= @status.key.primary_name %> wrote&hellip;</p>
+  <section class="author-validation">
+    <p><%= pluralize @status.key.signers.count, "person" %> trust that <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>"><%= @status.key.primary_name %></a> wrote:
+    </p>
   </section>
 
   <section class="status-body">
@@ -8,16 +9,10 @@
     <p><%= @status.body %></p>
   </section>
 
-  <section class="author-validation">
-    <p><%= pluralize @status.key.signers.count, "person" %>, including 
-
-      <% @status.some_key_signers.each do |signer| %>
-        <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= signer.formatted_keyid %>"><%= signer.primary_name %></a>, 
-      <% end%>
-
-    trust that this message was written by <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>"><%= @status.key.primary_name %></a>.
-    </p>
+  <section class="status-date">
+    <p>Posted <%= @status.created_at.to_formatted_s(:month_and_year) %></p>
   </section>
+
 </section>
 
 <section class="status-original">
