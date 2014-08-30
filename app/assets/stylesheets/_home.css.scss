@@ -6,15 +6,22 @@
   color: #333;
   margin: 6em auto 10em;
   max-width: 600px;
-  padding: 0 2em;
+  padding: 0;
 
   h2 {
+    background: yellow;
+    display: inline-block;
     font-size: 4em;
-    margin-bottom: 0.5em;
+    line-height: 0.7;
+    margin-bottom: 0em;
+    padding: 0 0.1em;
   }
 
   h3 {
+    color: #444;
     font-size: 2.25em;
+    font-weight: normal;
+    line-height: 1.2;
     margin-bottom: 1.5em;
   }
 
