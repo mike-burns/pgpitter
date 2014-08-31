@@ -1,0 +1,5 @@
+<ul>
+  <% @statuses.each do |status| %>
+    <li><%= link_to(status.body, hex_path(status.hexid)) %></li>
+  <% end %>
+<ul>

@@ -11,7 +11,7 @@ class StatusesController < ApplicationController
   end
 
   def show
-    status = find_status
+    status = Status.find_by_hexid(params[:hexid])
     respond_to do |format|
       format.html { @status = status }
       format.json { render json: status }
@@ -22,9 +22,5 @@ class StatusesController < ApplicationController
 
   def status_params
     params.require(:status).permit(:signed_body)
-  end
-
-  def find_status
-    Status.find_by_hexid(params[:hexid])
   end
 end
