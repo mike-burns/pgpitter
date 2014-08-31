@@ -1,24 +1,21 @@
 <section class="status">
   <section class="author-validation">
-    <p><%= pluralize @status.key.signers.count, "person" %> trust that <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>"><%= @status.key.primary_name %></a> wrote:
-    </p>
+    <p><%= pluralize @status.key.signers.count, "person" %> trust that <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @status.formatted_keyid %>"><%= @status.key.primary_name %></a> wrote:</p>
   </section>
 
   <section class="status-body">
-    <p></p>
     <p><%= @status.body %></p>
   </section>
 
   <section class="status-date">
     <p>Posted <%= @status.created_at.to_formatted_s(:month_and_year) %></p>
   </section>
-
 </section>
 
 <section class="status-original">
-  <section class="status-original-body">
+<section class="status-original-body">
 <pre>
 <%= @status.signed_body %>
 </pre>
-  </section>
-</div>
+</section>
+</section>

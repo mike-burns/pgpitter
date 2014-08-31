@@ -1,7 +1,8 @@
-$serif: karla, georgia, serif;
-$sans-serif: karla;
+$sans-serif: karla, "helvetica neue", helvetica, sans-serif;
+$monospace: "PT Mono", monospace;
 
 body {
+  background: #fff;
   color: #333;
   font-family: $sans-serif;
   margin: 1.5em 1.25em 0;
@@ -62,73 +63,7 @@ body {
   }
 }
 
-p {
-  margin: 0;
-}
-
-.status {
-  margin: 4em auto 6em;
-  max-width: 600px;
-  padding: 0;
-}
-
-.status-body {
-  color: #333;
-  font-size: 1.2em;
-  line-height: 1.5;
-  margin-bottom: 1em;
-}
-
-.author-validation {
-  color: #666;
-  font-family: $serif;
-  font-size: 1em;
-  margin-bottom: 1em;
-
-  p {
-    line-height: 1.4;
-  }
-
-  a {
-    background: yellow;
-    color: inherit;
-    padding: 0 0.25em;
-    text-decoration: none;
-  }
-}
-
-.status-date {
-  color: #999;
-  font-family: $serif;
-  font-size: 0.9em;
-  margin-bottom: 1em;
-
-  a {
-    color: #000;
-  }
-}
-
-.status-original {
-  background: #f3f3f3;
-  color: #777;
-  margin: 0 -1.25em;
-  padding: 2em;
-
-  .status-original-body {
-    font-size: 0.8em;
-    line-height: 1.35;
-    margin: 0 auto;
-    max-width: 600px;
-    overflow: auto;
-    padding: 0;
-  }
-
-  pre {
-    font-family: PT Mono;
-  }
-}
-
 code {
-  font-family: PT Mono;
+  font-family: $monospace;
   font-size: 0.8em;
 }
