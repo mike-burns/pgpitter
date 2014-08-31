@@ -30,6 +30,9 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.14'
+  gem 'dotenv-rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
 end
 
 group :test do

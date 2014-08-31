@@ -40,6 +40,15 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
+    capybara (2.4.1)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-webkit (1.3.0)
+      capybara (>= 2.0.2, < 2.5.0)
+      json
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -60,6 +69,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.3)
     dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     email_validator (1.4.0)
       activemodel
     erubis (2.7.0)
@@ -99,6 +110,8 @@ GEM
       bourbon (>= 2.1)
       sass (>= 3.2)
     newrelic_rpm (3.7.2.192)
+    nokogiri (1.6.2)
+      mini_portile (~> 0.5.2)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -186,6 +199,8 @@ GEM
     webmock (1.17.3)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -195,9 +210,12 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
+  capybara
+  capybara-webkit
   coffee-rails
   database_cleaner
   delayed_job_active_record (>= 4.0.0)
+  dotenv-rails
   email_validator
   factory_girl_rails
   flutie

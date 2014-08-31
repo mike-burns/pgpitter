@@ -1,0 +1,12 @@
+<section class="content">
+  <h3><%= @key.formatted_keyid %></h3>
+
+  <ul>
+    <% @statuses.each do |status| %>
+        <li>
+          <%= link_to(truncate(status.body, length: 17, separator: ' '),
+                      hex_path(status.hexid)) %>
+      </li>
+    <% end %>
+  <ul>
+</section>
