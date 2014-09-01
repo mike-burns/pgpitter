@@ -1,9 +1,7 @@
-Pgpitter
+Mnfst
 ========
 
-Proof of concept: never sign in, instead sign text.
-
-A Twitter-like app that uses PGP keys. API only for now.
+Concept: never create an account, instead sign text with a PGP key.
 
 _Create a new status_. This takes JSON where the content is a piece of
 text that is signed using a PGP key.
