@@ -1,0 +1,50 @@
+body.keys-show {
+  .top-level-header {
+    h2 {
+      display: block;
+    }
+  }
+}
+
+.posts {
+  margin: 4em auto 6em;
+  max-width: 600px;
+  padding: 0;
+
+  h3 {
+    color: #666;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0 0 3em 0;
+
+    a {
+      background: yellow;
+      color: inherit;
+      padding: 0 0.25em;
+      text-decoration: none;
+    }
+  }
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0 0 4em 0;
+
+    h4 {
+      font-size: 2em;
+      font-weight: normal;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      background: yellow;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

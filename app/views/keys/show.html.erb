@@ -1,11 +1,12 @@
-<section class="content">
-  <h3><%= @key.formatted_keyid %></h3>
+<section class="posts">
+  <h3>Posts by <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @key.formatted_keyid %>"><%= @key.primary_name %></a></h3>
 
-  <ul>
+  <ul class="post-list">
     <% @statuses.each do |status| %>
-        <li>
-          <%= link_to(truncate(status.body, length: 50, separator: ' '),
-                      hex_path(status.hexid)) %>
+      <li>
+        <h4><%= link_to(truncate(status.body, length: 50, separator: ' '),
+                      hex_path(status.hexid)) %></h4>
+        <p>Posted <%= status.created_at.to_formatted_s(:month_and_year) %></p>
       </li>
     <% end %>
   <ul>
