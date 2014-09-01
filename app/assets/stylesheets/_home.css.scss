@@ -21,18 +21,32 @@
     margin-bottom: 1.5em;
   }
 
-  .cta-instructions a {
-    background: #000;
-    border: 2px solid #fff;
-    color: #fff;
-    font-size: 1.5em;
+  .post-link,
+  .cta-instructions {
     display: inline-block;
-    margin: 0;
-    padding: 0.5em 1em;
-    text-decoration: none;
 
-    &:hover {
-      border-color: #000;
+    a {
+      background: #000;
+      border: 2px solid #000;
+      color: #fff;
+      font-size: 1.5em;
+      display: inline-block;
+      margin: 0 0.5em 0 0;
+      padding: 0.5em 1em;
+      text-decoration: none;
+
+      &:hover {
+        background: yellow;
+        color: #000;
+      }
+    }
+  }
+
+  .post-link {
+    a {
+      background: #fff;
+      border: 2px solid #000;
+      color: #333;
     }
   }
 }
