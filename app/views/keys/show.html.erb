@@ -4,7 +4,7 @@
   <ul>
     <% @statuses.each do |status| %>
         <li>
-          <%= link_to(truncate(status.body, length: 17, separator: ' '),
+          <%= link_to(truncate(status.body, length: 50, separator: ' '),
                       hex_path(status.hexid)) %>
       </li>
     <% end %>
