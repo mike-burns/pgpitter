@@ -12,7 +12,7 @@ feature "When a visitor views statues by keyid" do
     other_status = create(:status, signed_body: read_fixture("my_first_tweet.asc"))
 
     visit key_path(expected_status.keyid)
-    expect(page).to have_content expected_status.keyid
+    expect(page).to have_content expected_status.key.primary_name
     expect(page).not_to have_content other_status.body.first(5)
 
     click_link expected_status.body.first(3)
