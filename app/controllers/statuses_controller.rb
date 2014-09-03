@@ -1,3 +1,5 @@
+require 'sig_exception'
+
 class StatusesController < ApplicationController
   def create
     status = Status.new(status_params)
@@ -8,6 +10,8 @@ class StatusesController < ApplicationController
     else
       render text: status.errors.full_messages.join(', '), status: 400
     end
+  rescue SigException => e
+    render text: e.message, status: 400
   end
 
   def show

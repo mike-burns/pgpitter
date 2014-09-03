@@ -1,4 +1,5 @@
 require 'hkp'
+require 'sig_exception'
 
 class Status < ActiveRecord::Base
   belongs_to :key
@@ -67,8 +68,5 @@ class Status < ActiveRecord::Base
 
   def hkp
     Hkp.new(KEYSERVER_URL)
-  end
-
-  class SigException < StandardError
   end
 end
