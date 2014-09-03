@@ -35,11 +35,18 @@ gpg -a --output "$signed_body_file" --sign "$file"
 signed_body=`sed -e 's/$/\\\\\\\\n/' "$signed_body_file"`
 rm -f "$signed_body_file"
 
+raw_pub_key_file=`mktemp`
+trap "rm $raw_pub_key_file" INT QUIT
+rm -f "$raw_pub_key_file"
+gpg -a --output "$raw_pub_key_file" --export -K
+raw_pub_key=`sed -e 's/$/\\\\\\\\n/' "$raw_pub_key_file"`
+rm -f "$raw_pub_key_file"
+
 data=`mktemp`
 trap "rm $data" INT QUIT
 
 params=`cat` << P
-{"status":{"signed_body":"$signed_body"}}
+{"status":{"signed_body":"$signed_body","raw_pub_key":"$raw_pub_key"}}
 P
 echo "$params" > "$data"
 

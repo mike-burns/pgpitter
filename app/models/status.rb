@@ -1,4 +1,3 @@
-require 'hkp'
 require 'sig_exception'
 
 class Status < ActiveRecord::Base
@@ -15,7 +14,6 @@ class Status < ActiveRecord::Base
   def some_key_signers
     key.signers.limit(1)
   end
-
 
   private
 
@@ -47,7 +45,7 @@ class Status < ActiveRecord::Base
       [data.read, sig.key]
     when GPGME::GPG_ERR_NO_PUBKEY
       if tries > 0
-        import_into_keyring(sig.fpr)
+        import_into_keyring!
         verify(tries - 1)
       else
         raise SigException, "could not find public key for: #{sig.fpr}"
@@ -61,12 +59,7 @@ class Status < ActiveRecord::Base
     GPGME::Crypto.new
   end
 
-  def import_into_keyring(fingerprint)
-    raw_pub_key = hkp.fetch(fingerprint)
+  def import_into_keyring!
     GPGME::Key.import(raw_pub_key)
-  end
-
-  def hkp
-    Hkp.new(KEYSERVER_URL)
   end
 end

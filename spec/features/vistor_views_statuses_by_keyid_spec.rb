@@ -21,14 +21,9 @@ feature "When a visitor views statues by keyid" do
 
   private
 
-  def read_fixture(filename)
-      File.read(Rails.root.join("spec", "fixtures", filename))
-  end
-
   def stub_hkp(hkp, fingerprint)
     hkp.stub(:fetch).with(fingerprint) do
         read_fixture("#{fingerprint}.asc")
     end
   end
-
 end

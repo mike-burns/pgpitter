@@ -4,27 +4,27 @@ Mnfst
 Concept: never create an account, instead sign text with a PGP key.
 
 _Create a new status_. This takes JSON where the content is a piece of
-text that is signed using a PGP key.
+text that is signed using a PGP key, plus the key itself.
 
     POST /statuses
     Content-Type: application/json
 
-    { status: { signed_body: PGP-signed-ASCII } }
+    { status: { signed_body: PGP-signed-ASCII, raw_pub_key: PGP-key-ASCII } }
 
     =>
 
     201
 
-_View a status_. Takes a status ID. This is mostly here just for sharing
+_View a status_. Takes a hexid. This is mostly here just for sharing
 URLs with others.
 
-    GET /statuses/:id
+    GET /:hexid
     Content-Type: application/json
     Accept: application/json
 
 or:
 
-    GET /statuses/:id
+    GET /:hexid
     Content-Type: text/html
 
 Examples
@@ -40,7 +40,7 @@ The `signed_body` was generated from an input file named `tweet` using:
 These commands can be used to interact with the system:
 
     curl -i -d@data localhost:7000/statuses -H "Content-Type: application/json"
-    curl -i localhost:7000/statuses/17 -H "Content-Type: application/json" -H "Accept: application/json"
+    curl -i localhost:7000/9ab7c2e1 -H "Content-Type: application/json" -H "Accept: application/json"
 
 Getting Started
 ---------------

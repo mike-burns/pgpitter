@@ -25,6 +25,6 @@ class StatusesController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:signed_body)
+    params.require(:status).permit(:signed_body, :raw_pub_key)
   end
 end
