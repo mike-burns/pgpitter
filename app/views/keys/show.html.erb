@@ -1,5 +1,5 @@
 <section class="posts">
-  <h3>Posts by <a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @key.formatted_keyid %>"><%= @key.primary_name %></a></h3>
+  <h3><a href="https://pgp.mit.edu/pks/lookup?op=vindex&search=<%= @key.formatted_keyid %>" class="mit"><%= pluralize @key.signers.count, "person" %></a> trust that <%= @key.primary_name %> wrote these posts:</h3>
 
   <ul class="post-list">
     <% @statuses.each do |status| %>
