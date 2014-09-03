@@ -15,7 +15,7 @@
 <section class="status-original">
 <section class="status-original-body">
 <pre>
-<%= @status.signed_body %>
+<%= link_to(@status.signed_body, hex_path(@status.hexid, format:"asc"), title: "Download PGP-signed post") %>
 </pre>
 </section>
 </section>

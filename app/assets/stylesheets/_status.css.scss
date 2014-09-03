@@ -64,4 +64,10 @@ body.statuses-show {
   pre {
     font-family: $monospace;
   }
+
+  a {
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  }
 }
