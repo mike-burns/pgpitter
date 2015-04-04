@@ -16,6 +16,9 @@ class Status < ActiveRecord::Base
     key.signers.limit(1)
   end
 
+  def source_sig
+    signed_body || signature
+  end
 
   private
 
@@ -37,8 +40,14 @@ class Status < ActiveRecord::Base
 
   def verify(tries = 2)
     sig = nil
-    data = crypto.verify(signed_body){ | sig_ | sig = sig_ }
-    verified_data(data, sig, tries)
+
+    if self.body.present? && self.signature.present?
+      crypto.verify(self.signature, signed_text: self.body) { | sig_ | sig = sig_ }
+      verified_data(StringIO.new(body), sig, tries)
+    else
+      data = crypto.verify(signed_body){ | sig_ | sig = sig_ }
+      verified_data(data, sig, tries)
+    end
   end
 
   def verified_data(data, sig, tries)

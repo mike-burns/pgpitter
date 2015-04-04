@@ -31,15 +31,16 @@ fi
 signed_body_file=`mktemp`
 trap "rm $signed_body_file" INT QUIT
 rm -f "$signed_body_file"
-gpg -a --output "$signed_body_file" --sign "$file"
+gpg2 -a --output "$signed_body_file" --sign -b "$file"
 signed_body=`sed -e 's/$/\\\\\\\\n/' "$signed_body_file"`
+body=`sed -e 's/$/\\\\\\\\n/' "$file"`
 rm -f "$signed_body_file"
 
 data=`mktemp`
 trap "rm $data" INT QUIT
 
 params=`cat` << P
-{"status":{"signed_body":"$signed_body"}}
+{"status":{"body":"$body","signature":"$signed_body"}}
 P
 echo "$params" > "$data"
 

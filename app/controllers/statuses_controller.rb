@@ -3,7 +3,7 @@ require 'sig_exception'
 class StatusesController < ApplicationController
   def index
     key = Key.find_by_keyid(params[:key_id].sub("0x", ""))
-    render text: key.statuses.map(&:signed_body).join("\n")
+    render text: key.statuses.map(&:source_sig).join("\n")
   end
 
   def create
@@ -24,13 +24,13 @@ class StatusesController < ApplicationController
     respond_to do |format|
       format.html { @status = status }
       format.json { render json: status }
-      format.asc  { render text: status.signed_body }
+      format.asc  { render text: status.source_sig }
     end
   end
 
   private
 
   def status_params
-    params.require(:status).permit(:signed_body)
+    params.require(:status).permit(:signed_body, :body, :signature)
   end
 end

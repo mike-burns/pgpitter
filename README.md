@@ -15,6 +15,18 @@ text that is signed using a PGP key.
 
     201
 
+_Create a new status, detached_. This takes JSON where the content is a piece
+of text plus the PGP signature.
+
+    POST /statuses
+    Content-Type: application/json
+
+    { status: { body: ASCII, signature: PGP-signed-ASCII } }
+
+    =>
+
+    201
+
 _View a status_. Takes a status ID. This is mostly here just for sharing
 URLs with others.
 
