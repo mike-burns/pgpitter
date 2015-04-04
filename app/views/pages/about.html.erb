@@ -60,7 +60,7 @@ $ sudo make install</pre>
    </ol>
 
    <h4>How it works, advanced difficulty</h4>
-   <h5>JSON</h5>
+   <h5>JSON, attached signature</h5>
    <p>
    Let <var>$SIGNED_BODY</var> be a PGP-signed message in ASCII-armored
    format.
@@ -71,6 +71,18 @@ $ sudo make install</pre>
    The JSON looks like this:
    </p>
    <pre>{"status":{"signed_body":<var>$SIGNED_BODY</var>}}</pre>
+   <h5>JSON, detached signature</h5>
+   <p>
+   Let <var>$SIGNATURE</var> be a PGP signature in ASCII-armored
+   format.
+   You <em>must</em> make sure to preserve newlines in <var>$SIGNATURE</var>.
+   If you encounter errors, first ensure that newlines are preserved.
+   </p>
+   <p>Let <var>$BODY</var> be the source text for the signature.</p>
+   <p>
+   The JSON looks like this:
+   </p>
+   <pre>{"status":{"body":<var>$BODY</var>,"signature":$SIGNATURE}}</pre>
    <h5>POST</h5>
    <p>POST the JSON to <code><%= statuses_url %></code></p>
   </section>
